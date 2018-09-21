@@ -24,6 +24,7 @@ export class AppareilViewComponent implements OnInit, OnDestroy {
   constructor(private appareilService: AppareilService) { }
 
   ngOnInit(): void {
+    this.appareilService.getAppareilsFromServer();
     this.appareilSubscription = this.appareilService.appareilsSubject.subscribe(
       (appareils: any[]) => {
         this.appareils = appareils;
@@ -46,5 +47,9 @@ export class AppareilViewComponent implements OnInit, OnDestroy {
     } else {
       return null;
     }
+  }
+
+  onSave() {
+    this.appareilService.saveAppareilsToServer();
   }
 }
